@@ -68,11 +68,4 @@ begin
 
 
   until (game = 'N') or (game = 'n');
-
-
-writeln();
-writeln();
-writeln('Press <Enter> to exit');
-readln();
-
 end.
