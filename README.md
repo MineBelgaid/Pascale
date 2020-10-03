@@ -1,3 +1,3 @@
 # Pascal
 
-examples used while studying pascal
+examples used while studying pascal.
