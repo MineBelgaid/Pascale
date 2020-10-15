@@ -1,0 +1,1 @@
+This program will give the current day of the week when given a certain date.
