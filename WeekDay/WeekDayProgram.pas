@@ -33,23 +33,23 @@ Begin
     Until month <= 12 ;
   Until month > 0 ;
   If year Mod 4 = 0 Then
-  Begin
-    If year Mod 100 = 0 Then
-      Begin
-        If year Mod 400 = 0 Then
-          LeapYear := 1
-      End
-    Else
-      LeapYear := 1;
-  End
-Else
-  LeapYear := 0;
-If month > 2 Then
-  LeapYear := 0;
-If LeapYear = 1 Then
-  Maxday := 29
-Else
-  Maxday := 28;
+    Begin
+      If year Mod 100 = 0 Then
+        Begin
+          If year Mod 400 = 0 Then
+            LeapYear := 1
+        End
+      Else
+        LeapYear := 1;
+    End
+  Else
+    LeapYear := 0;
+  If month > 2 Then
+    LeapYear := 0;
+  If LeapYear = 1 Then
+    Maxday := 29
+  Else
+    Maxday := 28;
   Repeat
     Repeat
       Repeat
