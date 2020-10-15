@@ -28,16 +28,8 @@ Begin
     readln(UI);
     val(UI,month,error);
   Until (error = 0) And (month <= 12 ) And (month > 0) ;
-  If year Mod 4 = 0 Then
-    Begin
-      If year Mod 100 = 0 Then
-        Begin
-          If year Mod 400 = 0 Then
-            LeapYear := 1
-        End
-      Else
-        LeapYear := 1;
-    End
+  If (year Mod 4 = 0) And (( year Mod 100 <> 0) Or (year Mod 400 = 0)) Then
+    LeapYear := 1
   Else
     LeapYear := 0;
   If month > 2 Then
@@ -52,22 +44,15 @@ Begin
     val(UI,days,error);
   Until (error = 0) And (Days > 0) And (days < Maxday);
   Yearcode := (year Mod 100 + (year Mod 100) Div 4) Mod 7 ;
-  If (month = 1) Or (month = 10) Then
-    MonthCode := 0
-  Else If (month = 5)  Then
-         MonthCode := 1
-  Else If (month = 8) Then
-         MonthCode := 2
-  Else If (month = 2 ) Or (month = 3) Or (month = 13 ) Then
-         MonthCode := 3
-  Else If (month = 6) Then
-         MonthCode := 4
-  Else If (month = 9) Or (month = 12) Then
-         MonthCode :=  5
-  Else If (month = 4) Or (month = 7) Then
-         MonthCode := 6;
-
-
+  Case (month) Of 
+    1, 10 : MonthCode := 0;
+    5 : MonthCode := 1;
+    8 : MonthCode := 2;
+    2, 3, 13 : MonthCode := 3;
+    6 : MonthCode := 4;
+    9, 12 : MonthCode := 5;
+    4, 7 : MonthCode := 6;
+  End;
   Century := (year Div 100) * 100;
   If Century Mod 400 = 0 Then
     CenturyCode := 6
