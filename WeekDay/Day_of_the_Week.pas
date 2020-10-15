@@ -50,7 +50,6 @@ If LeapYear = 1 Then
   Maxday := 29
 Else
   Maxday := 28;
-
   Repeat
     Repeat
       Repeat
