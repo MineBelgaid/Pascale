@@ -24,14 +24,10 @@ Begin
     val(UI,year,error);
   Until error = 0;
   Repeat
-    Repeat
-      Repeat
-        write('Enter the Month:  ');
-        readln(UI);
-        val(UI,month,error);
-      Until error = 0 ;
-    Until month <= 12 ;
-  Until month > 0 ;
+    write('Enter the Month:  ');
+    readln(UI);
+    val(UI,month,error);
+  Until (error = 0) And (month <= 12 ) And (month > 0) ;
   If year Mod 4 = 0 Then
     Begin
       If year Mod 100 = 0 Then
@@ -51,14 +47,10 @@ Begin
   Else
     Maxday := 28;
   Repeat
-    Repeat
-      Repeat
-        write('Enter the Day:  ');
-        readln(UI);
-        val(UI,days,error);
-      Until error = 0;
-    Until days > 0;
-  Until days <= Maxday;
+    write('Enter the Day:  ');
+    readln(UI);
+    val(UI,days,error);
+  Until (error = 0) And (Days > 0) And (days < Maxday);
   Yearcode := (year Mod 100 + (year Mod 100) Div 4) Mod 7 ;
   If (month = 1) Or (month = 10) Then
     MonthCode := 0
