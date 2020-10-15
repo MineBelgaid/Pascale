@@ -1,0 +1,91 @@
+
+Program day;
+
+Var 
+  DaysOfWeek: array[1..7] Of string = ('Sunday', 'Monday','Tuesday', 'Wednesday'
+                                       ,'Thursday', 'Friday ', 'Saturday');
+  Calcul: integer;
+  year: integer;
+  days: integer;
+  month: integer;
+  MonthCode: integer;
+  CenturyCode: integer;
+  Yearcode : integer;
+  Century: integer;
+  LeapYear: integer;
+  Error: integer;
+  UI: string;
+  Maxday: integer;
+
+Begin
+  Repeat
+    write('Enter the year :  ');
+    readln(UI);
+    val(UI,year,error);
+  Until error = 0;
+  Repeat
+    Repeat
+      Repeat
+        write('Enter the Month:  ');
+        readln(UI);
+        val(UI,month,error);
+      Until error = 0 ;
+    Until month <= 12 ;
+  Until month > 0 ;
+  If year Mod 4 = 0 Then
+  Begin
+    If year Mod 100 = 0 Then
+      Begin
+        If year Mod 400 = 0 Then
+          LeapYear := 1
+      End
+    Else
+      LeapYear := 1;
+  End
+Else
+  LeapYear := 0;
+If month > 2 Then
+  LeapYear := 0;
+If LeapYear = 1 Then
+  Maxday := 29
+Else
+  Maxday := 28;
+
+  Repeat
+    Repeat
+      Repeat
+        write('Enter the Day:  ');
+        readln(UI);
+        val(UI,days,error);
+      Until error = 0;
+    Until days > 0;
+  Until days <= Maxday;
+  Yearcode := (year Mod 100 + (year Mod 100) Div 4) Mod 7 ;
+  If (month = 1) Or (month = 10) Then
+    MonthCode := 0
+  Else If (month = 5)  Then
+         MonthCode := 1
+  Else If (month = 8) Then
+         MonthCode := 2
+  Else If (month = 2 ) Or (month = 3) Or (month = 13 ) Then
+         MonthCode := 3
+  Else If (month = 6) Then
+         MonthCode := 4
+  Else If (month = 9) Or (month = 12) Then
+         MonthCode :=  5
+  Else If (month = 4) Or (month = 7) Then
+         MonthCode := 6;
+
+
+  Century := (year Div 100) * 100;
+  If Century Mod 400 = 0 Then
+    CenturyCode := 6
+  Else If (Century - 100) Mod 400 = 0 Then
+         CenturyCode := 4
+  Else If (Century - 200) Mod 400 = 0 Then
+         CenturyCode := 2
+  Else If (Century - 300) Mod 400 = 0 Then
+         CenturyCode := 0;
+  Calcul := (Yearcode + MonthCode + CenturyCode + days - LeapYear) Mod 7 ;
+  writeln(year, '\', Month,'\',days,' Is a ',DaysOfWeek[Calcul+1]);
+End.
