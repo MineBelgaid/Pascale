@@ -34,31 +34,34 @@ Begin
     textbackground(black);
     gotoxy(10,10);
     writeln('Enter the value of a , b , c : ');
-    gotoxy(10,12);
     Repeat
+      gotoxy(10,12);
+      clreol;
       write('a = ');
       textcolor(red);
       readln(UI);
       val(UI,a,error);
+      textcolor(white);
     Until error = 0 ;
-    textcolor(white);
     Repeat
       gotoxy(10,13);
+      clreol;
       write('b = ');
       textcolor(red);
       readln(UI);
       val(UI,b,error);
+      textcolor(white);
     Until error = 0 ;
-    textcolor(white);
     Repeat
       gotoxy(10,14);
+      clreol;
       write('c = ');
       textcolor(red);
       readln(UI);
       val(UI,c,error);
+      textcolor(white);
     Until error = 0 ;
 
-    textcolor(white);
     Delta := (b*b - 4*a*c);
     If Delta = 0 Then
       Begin

@@ -34,21 +34,25 @@ Begin
     LeapYear := 0;
   If month > 2 Then
     LeapYear := 0;
-  If LeapYear = 1 Then
+  If (LeapYear = 1) and (month = 2 ) Then
     Maxday := 29
-  Else
-    Maxday := 28;
+  Else if (LeapYear = 0) and (month = 2 ) then 
+    Maxday := 28
+  else if (month = 1 ) or (month = 3 ) or (month = 5 ) or (month = 7 ) or (month = 8 ) or(month = 10 ) or (month = 12 ) then
+    Maxday := 31
+  else  if (month = 4 ) or(month = 5 ) or(month = 6 ) or(month = 9 ) or (month = 11 ) then
+    Maxday := 30;
   Repeat
     write('Enter the Day:  ');
     readln(UI);
     val(UI,days,error);
-  Until (error = 0) And (Days > 0) And (days < Maxday);
+  Until (error = 0) And (Days > 0) And (days <=  Maxday);
   Yearcode := (year Mod 100 + (year Mod 100) Div 4) Mod 7 ;
   Case (month) Of 
     1, 10 : MonthCode := 0;
     5 : MonthCode := 1;
     8 : MonthCode := 2;
-    2, 3, 13 : MonthCode := 3;
+    2, 3, 11 : MonthCode := 3;
     6 : MonthCode := 4;
     9, 12 : MonthCode := 5;
     4, 7 : MonthCode := 6;
@@ -63,5 +67,5 @@ Begin
   Else If (Century - 300) Mod 400 = 0 Then
          CenturyCode := 0;
   Calcul := (Yearcode + MonthCode + CenturyCode + days - LeapYear) Mod 7 ;
-  writeln(year, '\', Month,'\',days,' Is a ',DaysOfWeek[Calcul+1]);
+  writeln(year, '\', Month,'\',days,' is a ',DaysOfWeek[Calcul+1]);
 End.

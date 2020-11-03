@@ -59,6 +59,6 @@ Begin
            Until z = 1;
 
            write('1');
-
          End;
+         readln;
 End.
