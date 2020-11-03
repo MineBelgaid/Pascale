@@ -65,7 +65,7 @@ Begin
     Delta := (b*b - 4*a*c);
     If Delta = 0 Then
       Begin
-        gotoxy(10,15);
+        gotoxy(10,16);
         Squar := Sqrt(Delta);
         write('The solution is : ');
         textcolor(red);
@@ -74,13 +74,13 @@ Begin
       End
     Else If Delta < 0 Then
            Begin
-             gotoxy(10,15);
+             gotoxy(10,16);
              Squar := Sqrt(abs(Delta));
              write('The  first solution is : ');
              textcolor(red);
              write(((-b)/(2*a)): 0: 2, ' ', ((-Squar)/(2*a)): 0: 2,'i');
              textcolor(white);
-             gotoxy(10,17);
+             gotoxy(10,18);
              write('The  Second solution is : ');
              textcolor(red);
              write(((-b)/(2*a)): 0: 2, ' + ', ((+Squar)/(2*a)): 0: 2,'i');
