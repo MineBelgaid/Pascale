@@ -3,6 +3,263 @@ Program Multiple_Programs;
 
 Uses 
 crt;
+Procedure EquationSolver;
+
+Var 
+  a, b, c : integer;
+  Delta, Squar : real;
+  UI : string;
+  key : char;
+  error : byte;
+Begin
+  Repeat
+    Clrscr;
+    gotoxy(20,3);
+    textbackground(red);
+    textcolor(white);
+    writeln('                                                                  '
+    );
+    gotoxy(20,4);
+    writeln('                 Second Degree Equation Solver.                   '
+    );
+    gotoxy(20,5);
+    writeln('                              By                                  '
+    );
+    gotoxy(20,6);
+    writeln('                         Belgaid Amine                            '
+    );
+    gotoxy(20,7);
+    writeln('                                                                  '
+    );
+    textbackground(black);
+    gotoxy(10,10);
+    writeln('Enter the value of a , b , c : ');
+    gotoxy(10,12);
+    Repeat
+      write('a = ');
+      textcolor(red);
+      readln(UI);
+      val(UI,a,error);
+    Until error = 0 ;
+    textcolor(white);
+    Repeat
+      gotoxy(10,13);
+      write('b = ');
+      textcolor(red);
+      readln(UI);
+      val(UI,b,error);
+    Until error = 0 ;
+    textcolor(white);
+    Repeat
+      gotoxy(10,14);
+      write('c = ');
+      textcolor(red);
+      readln(UI);
+      val(UI,c,error);
+    Until error = 0 ;
+
+    textcolor(white);
+    Delta := (b*b - 4*a*c);
+    If Delta = 0 Then
+      Begin
+        gotoxy(10,15);
+        Squar := Sqrt(Delta);
+        write('The solution is : ');
+        textcolor(red);
+        writeln((-b-Squar): 0: 2);
+        textcolor(white);
+      End
+    Else If Delta < 0 Then
+           Begin
+             gotoxy(10,15);
+             Squar := Sqrt(abs(Delta));
+             write('The  first solution is : ');
+             textcolor(red);
+             write(((-b)/(2*a)): 0: 2, ' ', ((-Squar)/(2*a)): 0: 2,'i');
+             textcolor(white);
+             gotoxy(10,17);
+             write('The  Second solution is : ');
+             textcolor(red);
+             write(((-b)/(2*a)): 0: 2, ' + ', ((+Squar)/(2*a)): 0: 2,'i');
+             textcolor(white);
+           End
+    Else
+      Begin
+        Squar := Sqrt(Delta);
+        gotoxy(10,16);
+        write('The  first solution is : ');
+        textcolor(red);
+        write(((-b-Squar)/2): 0: 2);
+        textcolor(white);
+        gotoxy(10,18);
+        write('The second solution is : ');
+        textcolor(red);
+        write(((-b+Squar)/2): 0: 2);
+      End;
+    gotoxy(15,20);
+    textcolor(white);
+    write('Press Enter to continue / Press ESC to Exit ');
+    Repeat
+      key := readkey;
+    Until (ord(key) = 27 ) Or (ord(key) = 13);
+
+  Until ord(key) = 27;
+
+End;
+
+
+Procedure GuessMyNumber;
+
+Var 
+  answer, guess, count: integer;
+  game,key: char;
+  UI: string;
+  error: byte;
+
+Begin
+  Repeat
+    count := 0;
+    Repeat
+      clrscr;
+      gotoxy(20,3);
+      textbackground(Green);
+      textcolor(White);
+      writeln('                                                        ');
+      gotoxy(20,4);
+      writeln('                Guess My Number Game .                  ');
+      gotoxy(20,5);
+      writeln('                         By                             ');
+      gotoxy(20,6);
+      writeln('                     Belgaid Amine                      ');
+      gotoxy(20,7);
+      writeln('                                                        ');
+      textbackground(black);
+      gotoxy(10,10);
+      writeln('Games Avaliable:  ');
+      gotoxy(13,12);
+      writeln('A) 1-10');
+      gotoxy(13,13);
+      writeln('B) 1-100');
+      gotoxy(13,14);
+      writeln('C) 1-1000');
+      gotoxy(10,16);
+      write('Enter the game : ');
+      textcolor(Green);
+      readln(game);
+      textcolor(White);
+
+    Until (game = 'a') Or (game = 'A') Or (game = 'B') Or (game = 'b') Or (
+          game
+          = 'c') Or (game = 'C');
+    clrscr;
+    gotoxy(20,3);
+    textbackground(Green);
+    textcolor(White);
+    writeln('                                                        ');
+    gotoxy(20,4);
+    writeln('                Guess My Number Game .                  ');
+    gotoxy(20,5);
+    writeln('                         By                             ');
+    gotoxy(20,6);
+    writeln('                     Belgaid Amine                      ');
+    gotoxy(20,7);
+    writeln('                                                        ');
+    textbackground(black);
+    randomize;
+    Case game Of 
+      'a','A' :
+                Begin
+                  answer := random(10)+1;
+                  gotoxy(10,10);
+                  clreol;
+                  writeln(' Try to Guess the number between 1 and 10.');
+                End;
+      'b','B' :
+                Begin
+                  answer := random(100)+1;
+                  gotoxy(10,10);
+                  clreol;
+                  writeln('Try to Guess the number between 1 and 100.');
+                End;
+      'c','C' :
+                Begin
+                  answer := random(1000)+1;
+                  gotoxy(10,10);
+                  clreol;
+                  writeln(' Try to Guess the number between 1 and 1000. ');
+                End;
+    End;
+    Repeat
+      Repeat
+        gotoxy(13,12);
+        clreol;
+        write('Enter your guess: ');
+        textcolor(Green);
+        readln(UI);
+        textcolor(White);
+        val(UI,guess,error);
+        If error <> 0 Then
+          Begin
+            gotoxy(15,14);
+            clreol;
+            gotoxy(13,14);
+            clreol;
+            textcolor(Red);
+            writeln('Incorrect input try again');
+            textcolor(White);
+          End;
+      Until error = 0;
+
+      count := count+1;
+
+      If guess < answer Then
+        Begin
+          gotoxy(15,14);
+          clreol;
+          textcolor(Red);
+          writeln('Too low, Try again!');
+          textcolor(White);
+        End
+      Else If guess > answer Then
+             Begin
+               gotoxy(15,14);
+               clreol;
+               textcolor(Red);
+               writeln('Too high, Try again!');
+               textcolor(White);
+             End
+    Until guess = answer;
+    Begin
+      gotoxy(15,14);
+      clreol;
+      gotoxy(10,10);
+      clreol;
+      gotoxy(13,12);
+      clreol;
+      textcolor(LightGreen);
+      write('       Congratulations! You guessed my number my number in: ');
+      textcolor(Red);
+      write(count);
+      textcolor(LightGreen);
+      If count = 1 Then
+        writeln(' Guess!')
+      Else If count > 1 Then
+             writeln(' Guesses!');
+      textcolor(white);
+    End;
+    gotoxy(13,16);
+    write('             Press Enter to Try again / Press ESC to Exit ');
+    Repeat
+      key := readkey;
+    Until (ord(key) = 27 ) Or (ord(key) = 13);
+  Until ord(key) = 27;
+
+
+End;
+
+
+
+
 Function PrimeNum(number:longint): integer;
 
 Var 
@@ -11,13 +268,18 @@ Var
 Begin
   check := 0;
   x := 2 ;
-  While x < sqrt(number)  Do
+  While x <= sqrt(number)  Do
     Begin
       If number Mod x = 0 Then
         Begin
           check := check +1;
           break;
-        End;
+        End
+      Else If (number = 4 ) Or (number = 9) Then
+             Begin
+               check := check + 1;
+               break;
+             End;
       x := x +1;
     End;
   If (check = 0)  Then
@@ -99,6 +361,10 @@ Begin
   Until ord(key) = 27;
 End;
 
+
+
+
+
 Procedure WeekDay();
 
 Var 
@@ -112,7 +378,7 @@ Begin
   Repeat
     Clrscr;
     gotoxy(20,3);
-    textbackground(blue);
+    textbackground(5);
     textcolor(white);
     writeln('                                                                  '
     );
@@ -134,7 +400,7 @@ Begin
       gotoxy(10,10);
       clreol;
       write('Enter the year :  ');
-      textcolor(Cyan);
+      textcolor(5);
       readln(UI);
       textcolor(white);
       val(UI,year,error);
@@ -143,7 +409,7 @@ Begin
       gotoxy(10,12);
       clreol;
       write('Enter the Month:  ');
-      textcolor(Cyan);
+      textcolor(5);
       readln(UI);
       textcolor(white);
       val(UI,month,error);
@@ -170,7 +436,7 @@ Begin
       gotoxy(10,14);
       clreol;
       write('Enter the Day:  ');
-      textcolor(Cyan);
+      textcolor(5);
       readln(UI);
       textcolor(white);
       val(UI,days,error);
@@ -197,7 +463,7 @@ Begin
     Calcul := (Yearcode + MonthCode + CenturyCode + days - LeapYear) Mod 7 ;
     gotoxy(10,18);
     write(year, '\', Month,'\',days,' is a : ');
-    textcolor(Cyan);
+    textcolor(5);
     writeln(DaysOfWeek[Calcul+1]);
     writeln;
     gotoxy(10,20);
@@ -209,10 +475,10 @@ Begin
 
   Until ord(key) = 27;
 
-
-
-
 End;
+
+
+
 
 Var 
   KeyPressed,keypressed2 : char;
@@ -225,12 +491,12 @@ Begin
     cursoroff;
     y := 2 ;
     line[1] := 'Menu:';
-    line[2] := '   [1] : Day Of The Week ';
-    line[3] := '   [2] : Decomposition of a number ';
-    line[4] := '   [3] : This is line number 3';
-    line[5] := '   [4] : This is line number Four';
+    line[2] := '   [1] : Second Degree Equation Solver.';
+    line[3] := '   [2] : Decomposition of a number.';
+    line[4] := '   [3] : Guess My Number Game.';
+    line[5] := '   [4] : Day Of The Week. ';
     line[6] := ' ';
-    line[7] := '   [5] : Exit the program';
+    line[7] := '   [5] : Exit the program.';
     clrscr;
     gotoxy(20,3);
     textbackground(blue);
@@ -295,7 +561,7 @@ Begin
       Begin
         clrscr;
         cursoron;
-        WeekDay;
+        EquationSolver;
         clrscr;
       End
     Else If (y = 3 ) And (keypressed = #13 ) Then
@@ -305,6 +571,22 @@ Begin
              Decomposition;
              clrscr;
            End
+    Else If (y = 4 ) And (keypressed = #13 ) Then
+           Begin
+             clrscr;
+             cursoron;
+             GuessMyNumber;
+             clrscr;
+           End
+
+    Else If (y =  5) And (keypressed = #13 ) Then
+           Begin
+             clrscr;
+             cursoron;
+             WeekDay;
+             clrscr;
+           End
+
     Else If (y = 7 ) And (keypressed = #13 ) Then
            Begin
              Repeat
@@ -315,6 +597,9 @@ Begin
              If UpCase(keypressed2) = 'Y' Then
                break;
            End;
+
+
+
 
   Until ord(keypressed) = 27;
   clrscr;
