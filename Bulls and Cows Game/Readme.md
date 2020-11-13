@@ -1,8 +1,8 @@
-## Bulls and Cows game made by Amine Belgaid.
+# Bulls and Cows game made by Amine Belgaid.
 
 This game was created while learning pascal programming language.
 
-# How To Play.
+## How To Play.
 
 The Point of this game is to guess the correct number in the least attempts.
 
