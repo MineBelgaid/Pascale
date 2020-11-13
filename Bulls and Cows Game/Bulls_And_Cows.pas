@@ -9,7 +9,7 @@ Var
   Keypressed : char;
   MaxOptions,MaxNumbers : integer;
 Begin
-  clrscr;
+  window(14,9,60,30);
   textcolor(white);
   writeln('Menu:');
   For y := 0 To high(Options)  Do
@@ -116,7 +116,7 @@ Begin
       End;
 
   Until (Keypressed = #27) Or (Keypressed = #13) ;
-  If exit And (y = MaxOptions) Then
+  If (exit And (y = MaxOptions)) Or (keypressed = #27)  Then
     Make_Menu := -1
   Else
     Make_Menu := y + 1 ;
@@ -155,7 +155,10 @@ Var
   keypressed : char;
 
 Begin
+  cursoroff;
   Repeat
+     clrscr;
+    window(1,1,1900,30);
     gotoxy(20,3);
     textbackground(magenta);
     textcolor(white);
@@ -182,7 +185,7 @@ Begin
         Repeat
           guess := random(9999) ;
           For x := 1 To 4 Do
-            DecomposedGuess[x] := (guess Mod (10**x) Div (10**(x+1)));
+            DecomposedGuess[x] := (guess Mod (10**x) Div (10**(x-1)));
 
           If Duplicates(DecomposedGuess) Then
             error := 1
@@ -195,7 +198,7 @@ Begin
       Begin
         guess := random(9999) ;
         For x := 1 To 4 Do
-          DecomposedGuess[x] := (guess Mod (10**x) Div (10**(x+1)));
+          DecomposedGuess[x] := (guess Mod (10**x) Div (10**(x-1)));
       End;
 
     If gamemode = (-1) Then
@@ -207,6 +210,7 @@ Begin
     Else If gamemode <> (-1) Then
            Begin
              clrscr;
+             error := 0 ;
              gotoxy(20,3);
              textbackground(magenta);
              textcolor(white);
@@ -231,6 +235,8 @@ Begin
              );
              gotoxy(25,15);
              writeln(guess);
+             For x := 1 To 4 Do
+               write(DecomposedGuess[x]);
              count := 0;
              line := 10;
              gotoxy(38,8);
@@ -247,7 +253,7 @@ Begin
              gotoxy(44,line-1);
              textcolor(Blue);
              write('Guess');
-             gotoxy(54,line+1);
+             gotoxy(54,line-1);
              write('Result');
              Repeat
                B := 0;
@@ -265,12 +271,10 @@ Begin
                  gotoxy(44,line);
                  read(UI);
                  val(UI,Attempt,error);
-
                Until error = 0 ;
                For x := 1 To 4 Do
-
                  Begin
-                   DecomposedAttempt[x] := (Attempt Mod (10**x) Div (10**(x+1)))
+                   DecomposedAttempt[x] := (Attempt Mod (10**x) Div (10**(x-1)))
                    ;
                    If DecomposedAttempt[x] = DecomposedGuess[x] Then
                      B := B + 1
@@ -279,6 +283,9 @@ Begin
                        If DecomposedAttempt[x] = DecomposedGuess[y] Then
                          C := C + 1;
                  End;
+               gotoxy(20,20);
+               For x := 1 To 4 Do
+                 write(DecomposedAttempt[x]);
                gotoxy(54,line);
                textcolor(Green);
                write(B) ;
@@ -291,8 +298,8 @@ Begin
                count := count +1;
                line := line + 1;
                readln;
-
              Until B = 4;
+
              gotoxy(38,line);
              textcolor(magenta);
              writeln('   +---------+---------+');
