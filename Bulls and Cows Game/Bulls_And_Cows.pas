@@ -11,16 +11,16 @@ Var
 Begin
   window(14,9,60,30);
   textcolor(white);
-  writeln('Menu:');
+  writeln('Select a GameMode: ');
   For y := 0 To high(Options)  Do
     Begin
-      writeln('   [', y + 1, '] ',Options[y]);
+      writeln('         [', y + 1, '] ',Options[y]);
     End;
   If Exit Then
     Begin
       MaxOptions := high(Options) + 2;
       writeln;
-      writeln('   [', MaxOptions , '] ', 'Exit The Program.')
+      writeln('         [', MaxOptions , '] ', 'Exit The Program.')
     End
   Else
     MaxOptions := high(Options);
@@ -31,11 +31,11 @@ Begin
     textcolor(Green);
     If exit And (y  = MaxOptions) Then
       Begin
-        write('[', y , '] ','Exit The Program. ');
+        write('      [', y , '] ','Exit The Program. ');
       End
     Else
       Begin
-        write('[', y + 1, '] ',Options[y]);
+        write('      [', y + 1, '] ',Options[y]);
       End;
     gotoxy(4,y+2);
     textcolor(white);
@@ -50,11 +50,11 @@ Begin
           Begin
             If exit And (y  = MaxOptions) Then
               Begin
-                write('[', y , '] ','Exit The Program. ');
+                write('      [', y , '] ','Exit The Program. ');
               End
             Else
               Begin
-                write('[', y + 1, '] ',Options[y]);
+                write('      [', y + 1, '] ',Options[y]);
                 y := MaxOptions;
               End;
           End
@@ -62,10 +62,10 @@ Begin
           Begin
             If exit And (y  = MaxOptions) Then
               Begin
-                write('[', y , '] ','Exit The Program. ');
+                write('      [', y , '] ','Exit The Program. ');
               End
             Else
-              write('[', y + 1, '] ',Options[y]);
+              write('      [', y + 1, '] ',Options[y]);
             y := ord(Keypressed) - 49 ;
             gotoxy(10,10);
             writeln(y);
@@ -80,12 +80,12 @@ Begin
                 clreol;
                 If exit And (y = MaxOptions) Then
                   Begin
-                    write('[', y , '] ','Exit The Program.');
+                    write('      [', y , '] ','Exit The Program.');
                     y := MaxOptions - 2 ;
                   End
                 Else
                   Begin
-                    write('[', y + 1, '] ', Options[y]);
+                    write('      [', y + 1, '] ', Options[y]);
                     y := y - 1;
                     If (y < 0) Then
                       y := MaxOptions
@@ -98,12 +98,12 @@ Begin
                 clreol;
                 If exit And (y = MaxOptions) Then
                   Begin
-                    write('[', y , '] ','Exit The Program.');
+                    write('      [', y , '] ','Exit The Program.');
                     y := 0;
                   End
                 Else
                   Begin
-                    write('[', y + 1, '] ',Options[y]);
+                    write('      [', y + 1, '] ',Options[y]);
                     y := y + 1;
                     If y > MaxOptions   Then
                       y :=  0
@@ -157,7 +157,7 @@ Var
 Begin
   cursoroff;
   Repeat
-     clrscr;
+    clrscr;
     window(1,1,1900,30);
     gotoxy(20,3);
     textbackground(magenta);
@@ -235,8 +235,6 @@ Begin
              );
              gotoxy(25,15);
              writeln(guess);
-             For x := 1 To 4 Do
-               write(DecomposedGuess[x]);
              count := 0;
              line := 10;
              gotoxy(38,8);
@@ -284,8 +282,6 @@ Begin
                          C := C + 1;
                  End;
                gotoxy(20,20);
-               For x := 1 To 4 Do
-                 write(DecomposedAttempt[x]);
                gotoxy(54,line);
                textcolor(Green);
                write(B) ;
