@@ -15,8 +15,8 @@ Game modes avaliable are :
 
 
 
-After choosing the gamemode, Start Guessing!
-For each guess you'll get how many *Bull(**B**)* and *Cows(**C**)* you've got.
+After choosing the gamemode, Start Guessing!.
+For each guess you'll get how many **Bulls(**B**)** and **Cows(**C**)** you've got.
 * A **Bull** Means a number is in the correct position.
 * A **Cow** Means a number does exist but is in the wrong position.
 
