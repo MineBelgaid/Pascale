@@ -233,8 +233,6 @@ Begin
              writeln(
             '                                                                  '
              );
-             gotoxy(25,15);
-             writeln(guess);
              count := 0;
              line := 10;
              gotoxy(38,8);
