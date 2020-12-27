@@ -68,10 +68,6 @@ Begin
             Else
               write('[', y + 1, '] ',Options[y]);
             y := ord(Keypressed) - 49 ;
-            gotoxy(10,10);
-            writeln(y);
-            writeln(MaxOptions);
-            writeln(ord(Keypressed));
           End;
       End
     Else
